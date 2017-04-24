@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :require_author, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -39,6 +40,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to sub_url(@post.sub_id)
+  end
+
+  def require_author
+    @post = Post.find(params[:id])
+    redirect_to sub_url(@post.sub_id) unless current_user.id == @post.user_id
   end
 
   private
