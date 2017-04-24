@@ -3,6 +3,17 @@
 <p><b>Description:</b> <%= @sub.description %></p>
 
 <br>
+
+<h3>Posts:</h3>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+  <% end %>
+</ul>
+<%= link_to "New Post!", new_sub_post_url(@sub) %><br><br><br>
+
+
+
 <% if current_user.id == @sub.user_id %>
   <%= link_to "Edit Sub", edit_sub_url(@sub) %>
   <%= button_to "Destroy Sub", sub_url(@sub), method: :delete %>

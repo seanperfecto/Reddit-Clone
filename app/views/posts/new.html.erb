@@ -1,0 +1,14 @@
+<h2>Create a Post!</h2>
+
+<form action="/posts" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Title
+  <input type="text" name="post[title]"></label><br><br>
+  <label>URL (optional)
+  <input type="text" name="post[url]"></label><br><br>
+  <label>Content (optional)<br>
+    <textarea name="post[content]" rows="8" cols="80"></textarea></label><br><br>
+
+  <input type="submit" value="Create Post">
+</form>
