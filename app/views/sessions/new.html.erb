@@ -1,0 +1,14 @@
+<h2>Sign In!</h2>
+
+<form action="/session" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Username
+  <input type="text" name="user[username]"></label>
+  <label>Password
+  <input type="password" name="user[password]"></label>
+
+  <input type="submit" value="Create User">
+</form>
+
+<%= link_to "Don't have an account? Sign Up!", new_user_url, method: :get %>

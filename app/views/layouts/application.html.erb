@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RedditClone</title>
+    <%= csrf_meta_tags %>
+
+  </head>
+  <% unless signed_in? %>
+    <%= link_to "Sign In", new_session_url, method: :get %>
+  <% end %>
+
+  <% if current_user %>
+    Hello, <%= current_user.username %><br>
+    <%= button_to "Sign Out", session_url, method: :delete %>
+  <% end %>
+
+  <center><img src="https://www.mlssoccer.com/sites/all/themes/custom/mp7/images/share_reddit.png" alt="logo"></center>
+
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      <%= error %><br>
+    <% end %>
+  <% end %>
+
+  <%= flash[:notice] if flash[:notice] %>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
