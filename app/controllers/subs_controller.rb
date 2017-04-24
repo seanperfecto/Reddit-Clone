@@ -7,7 +7,7 @@ class SubsController < ApplicationController
   end
 
   def create
-    @sub = Sub.create(sub_params)
+    @sub = Sub.new(sub_params)
     @sub.user_id = current_user.id
     if @sub.save
       flash[:notice] = "Sub successfully created!"
