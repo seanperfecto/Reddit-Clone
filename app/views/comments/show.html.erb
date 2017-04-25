@@ -1,0 +1,20 @@
+<h2>Comments</h2>
+
+<b>Comment:</b><br>
+<%= @comment.content %> - <font color="orange"><%= @comment.author.username %>
+  <%= @comment.created_at.strftime("%b %d %Y %H:%M") %></font><br><br>
+
+<form action="/comments" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>">
+  <input type="hidden" name="comment[post_id]" value="<%= params[:post_id] %>">
+
+  <label><b>Content</b><br>
+    <textarea name="comment[content]" rows="8" cols="80"></textarea></label><br><br>
+
+  <input type="submit" value="Reply to Comment">
+</form>
+<%= button_to "Delete Comment", comment_url(@comment), method: :delete if current_user.id == @comment.user_id %>
+
+<br><br><br>
+<%= link_to "Back to Post", post_url(params[:post_id]) %>

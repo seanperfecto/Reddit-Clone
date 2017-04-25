@@ -6,6 +6,14 @@
 
 <p><b>Content:</b> <%= @post.content %></p><br><br>
 
+<ul><b>Comments:</b>
+  <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+    <li><%= render("comments/comment", comment: comment) %></li>
+  <% end %>
+    <li></li>
+    <li><%= link_to "New Comment", new_post_comment_url(@post) %></li>
+</ul>
+
 <% if @post.user_id == current_user.id %>
   <%= link_to "Edit Post", edit_post_url(@post) %><br>
   <%= button_to "Delete Post", post_url(@post), method: :delete %><br>

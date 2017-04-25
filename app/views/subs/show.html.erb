@@ -14,7 +14,7 @@
 
 
 
-<% if current_user.id == @sub.user_id %>
+<% if current_user && (current_user.id == @sub.user_id) %>
   <%= link_to "Edit Sub", edit_sub_url(@sub) %>
   <%= button_to "Destroy Sub", sub_url(@sub), method: :delete %>
 <% end %>

@@ -1,0 +1,13 @@
+<%= comment.content %> <font color="orange">- <%= comment.author.username %>
+  <%= comment.created_at.strftime("%b %d %Y %H:%M") %></font>
+   <%= link_to "Reply", post_comment_url(comment.post_id, comment)%>
+
+
+
+<% if comment.child_comments != nil %>
+  <ul>
+    <% comment.child_comments.each do |child_comment| %>
+      <li><%= render("comments/comment", comment: child_comment) %></li>
+    <% end %>
+  </ul>
+<% end %>
