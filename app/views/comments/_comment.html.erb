@@ -3,11 +3,10 @@
    <%= link_to "Reply", post_comment_url(comment.post_id, comment)%>
 
 
-
-<% if comment.child_comments != nil %>
   <ul>
-    <% comment.child_comments.each do |child_comment| %>
-      <li><%= render("comments/comment", comment: child_comment) %></li>
+    <% @all_comments.each do |child_comment| %>
+      <% if child_comment.parent_comment_id == comment.id %>
+        <li><%= render("comments/comment", comment: child_comment) %></li>
+      <% end %>
     <% end %>
   </ul>
-<% end %>
