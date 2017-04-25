@@ -4,9 +4,7 @@
 
 
   <ul>
-    <% @all_comments.each do |child_comment| %>
-      <% if child_comment.parent_comment_id == comment.id %>
+    <% @comments_by_parent_id[comment.id].each do |child_comment| %>
         <li><%= render("comments/comment", comment: child_comment) %></li>
-      <% end %>
     <% end %>
   </ul>
